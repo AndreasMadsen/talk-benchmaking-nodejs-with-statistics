@@ -1,0 +1,55 @@
+<style scoped>
+  :scope .name {
+    position: relative;
+    top: -20px;
+  }
+
+  :scope div {
+    width: 80%;
+    margin: 10px auto 0 auto;
+  }
+
+  :scope article {
+    float: left;
+    width: 50%;
+  }
+
+  :scope .card {
+    overflow: hidden;
+  }
+  :scope .card li {
+    list-style: none;
+    font-size: 60%;
+    float: left;
+    display: block;
+    box-sizing: border-box;
+  }
+  :scope .card li:nth-child(odd) {
+    width: 55%;
+  }
+  :scope .card li:nth-child(even) {
+    width: 45%;
+  }
+  :scope .card li .fa {
+    width: 35px;
+  }
+</style>
+<p class="name">
+  <strong>Andreas Madsen</strong> <small>(aka Mr. Mad)</small>
+</p>
+<div>
+  <article>
+    <h3>Math Student</h3>
+    <p>Data Analysist <br> Machine Learning (AI)</p>
+  </article>
+  <article>
+    <h3>Node.js Contributor</h3>
+    <p>Async Wrap</p>
+  </article>
+  <ul class="card">
+    <li><i class="fa fa-globe" aria-hidden="true"></i> Denmark</li>
+    <li><i class="fa fa-twitter" aria-hidden="true"></i> @andreas_madsen</li>
+    <li><i class="fa fa-graduation-cap" aria-hidden="true"></i> Technical University of Denmark</li>
+    <li><i class="fa fa-github" aria-hidden="true"></i> /AndreasMadsen</li>
+  </ul>
+</div>
