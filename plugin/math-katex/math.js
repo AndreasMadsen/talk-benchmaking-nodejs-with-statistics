@@ -22,7 +22,7 @@ var RevealMath = window.RevealMath || (function(){
 
 	function loaded() {
 		var elements = document.querySelectorAll('math-latex');
-		elements.forEach(processElement);
+		Array.from(elements).forEach(processElement);
 		Reveal.layout();
 	}
 

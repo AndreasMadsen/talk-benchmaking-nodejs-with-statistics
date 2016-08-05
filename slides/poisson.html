@@ -1,0 +1,52 @@
+<h1>Random Recognition</h1>
+
+<style scoped>
+:scope article {
+  width: 304px;
+  height: 304px;
+  display: inline-block;
+}
+
+:scope article:first-of-type {
+  margin-right: 50px;
+}
+
+:scope canvas {
+  border: 2px solid #073642;
+
+  image-rendering: optimizeSpeed;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: optimize-contrast;
+  image-rendering: pixelated;
+  -ms-interpolation-mode: nearest-neighbor;
+}
+
+:scope canvas.fragment {
+  visibility: visible;
+  opacity: 1;
+}
+
+:scope canvas.fragment.border-green.visible {
+  border-color: #859900;
+}
+
+:scope canvas.fragment.border-red.visible {
+  border-color: #cb4b16;
+}
+
+</style>
+
+<div>
+  <article>
+    <small>left</small>
+    <canvas class="fragment" data-fragment-index="1" id="poisson-left" width="300" height="300"></canvas>
+  </article>
+
+  <article>
+    <small>right</small>
+    <canvas class="fragment" data-fragment-index="1" id="poisson-right" width="300" height="300"></canvas>
+  </article>
+</div>
+
+<strong class="fragment fade-in" data-fragment-index="1">the vast majority gets it wrong</strong>

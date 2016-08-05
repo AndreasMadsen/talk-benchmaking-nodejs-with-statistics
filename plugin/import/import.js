@@ -19,13 +19,18 @@
         .replace(/:scope/g, '#' + name);
 
       html = html.slice(0, scopedStyleStart) + style + html.slice(scopedStyleEnd);
-      console.log(html);
     }
 
     section.id = name;
     section.innerHTML = html;
+
+    if (section.dataset.script) {
+      const script = document.createElement('script');
+      script.src = section.dataset.script;
+      section.appendChild(script);
+    }
   }
 
   var sections = document.querySelectorAll('[data-import-from]');
-  sections.forEach(downloadSection);
+  Array.from(sections).forEach(downloadSection);
 })();

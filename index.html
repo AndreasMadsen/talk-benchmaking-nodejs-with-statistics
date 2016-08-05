@@ -4,10 +4,12 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+		<title>Benchmarking Node.js with Statistics</title>
 
 		<link rel="stylesheet" href="css/reveal.css">
 		<link rel="stylesheet" href="css/theme/moon.css">
+		<link rel="stylesheet" href="css/font-awesome.css">
+		<link rel="stylesheet" href="css/custom.css">
 
 		<!-- Theme used for syntax highlighting of code -->
 		<link rel="stylesheet" href="lib/css/solarized_dark.css">
@@ -25,10 +27,25 @@
 		<div class="reveal">
 			<div class="slides">
 				<section>
-					<h1>Slide 1</h1>
-					<math-latex latex="\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \left( \sum_{k=1}^n b_k^2 \right)" display-mode></math-latex>
+					<h1>Benchmarking Node.js with Statistics</h1>
 				</section>
-				<section>Slide 2</section>
+				<section>
+					<h1>Me</h1>
+					<section data-import-from="slides/me.html"></section>
+				</section>
+				<section>
+					<h1>A Benchmark</h1>
+					<section data-import-from="slides/benchmark-naive.html"></section>
+				</section>
+				<section>
+					<section data-import-from="slides/poisson.html" data-script="slides/poisson.js"></section>
+					<section data-import-from="slides/pigeon-turn-peck.html"></section>
+					<section data-import-from="slides/pigeon-clock-input.html"></section>
+				</section>
+				<section>
+					<h1>A Benchmark</h1>
+					<section data-import-from="slides/benchmark-asm.html"></section>
+				</section>
 			</div>
 		</div>
 
@@ -43,6 +60,7 @@
 
 				// More info https://github.com/hakimel/reveal.js#dependencies
 				dependencies: [
+					{ src: 'plugin/import/import.js' },
 					{ src: 'plugin/math-katex/math.js', async: true },
 					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
 				]
