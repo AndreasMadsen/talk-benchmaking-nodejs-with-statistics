@@ -35,16 +35,41 @@
 				</section>
 				<section>
 					<h1>A Benchmark</h1>
-					<section data-import-from="slides/benchmark-naive.html"></section>
+					<section data-import-from="slides/benchmark/benchmark-naive.html"></section>
 				</section>
 				<section>
-					<section data-import-from="slides/poisson.html" data-script="slides/poisson.js"></section>
-					<section data-import-from="slides/pigeon-turn-peck.html"></section>
-					<section data-import-from="slides/pigeon-clock-input.html"></section>
+					<section data-import-from="slides/random-recognition/poisson.html" data-script="slides/random-recognition/poisson.js"></section>
+					<section data-import-from="slides/random-recognition/pigeon-turn-peck.html"></section>
+					<section data-import-from="slides/random-recognition/pigeon-clock-input.html"></section>
 				</section>
 				<section>
 					<h1>A Benchmark</h1>
-					<section data-import-from="slides/benchmark-asm.html"></section>
+					<section data-import-from="slides/benchmark/benchmark-asm.html"></section>
+				</section>
+				<section>
+					<h1>Statistics</h1>
+				</section>
+				<section>
+					<h1>Central Limit Theorem</h1>
+					<section data-import-from="slides/clt/visualization.html" data-script="slides/clt/visualization.js"></section>
+					<section>CLT formalized</section>
+					<section>Square Root Law</section>
+					<section>We messure ops/sec not sec/ops</section>
+				</section>
+				<section>
+					<h1>Confidence Interval</h1>
+					<section>Description and grafics</section>
+					<section>Calculation (also mean and sd)</section>
+					<section>Example</section>
+					<section>The null hypotisis</section>
+				</section>
+				<section>
+					<h1>Two sample t-test</section>
+					<section>A confidence interval perspective</section>
+					<section>The t-test</section>
+				</section>
+				<section>
+					<h1>P-value interpretation</h1>
 				</section>
 			</div>
 		</div>
@@ -61,6 +86,7 @@
 				// More info https://github.com/hakimel/reveal.js#dependencies
 				dependencies: [
 					{ src: 'plugin/import/import.js' },
+					{ src: 'lib/js/d3.min.js', async: true },
 					{ src: 'plugin/math-katex/math.js', async: true },
 					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
 				]

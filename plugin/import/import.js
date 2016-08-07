@@ -1,7 +1,7 @@
 (function () {
   function downloadSection(section) {
     var url = section.dataset.importFrom;
-    var name = url.match(/\/([^.]+)/)[1];
+    var name = url.slice(url.lastIndexOf('/') + 1, -5);
 
     var xhr = new XMLHttpRequest();
     xhr.open('GET', url, false);
