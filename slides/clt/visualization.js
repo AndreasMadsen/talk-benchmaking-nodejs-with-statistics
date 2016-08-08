@@ -1,5 +1,13 @@
 (function () {
   var currentIndex = 0;
+
+  const activeFragments = document.currentScript.parentNode
+    .querySelectorAll('.fragment.current-visible.visible');
+  if (activeFragments.length > 0) {
+    currentIndex = +activeFragments[activeFragments.length - 1].dataset.fragmentIndex;
+    currentIndex += 1;
+  }
+
   var frame = null;
   var state = null;
 
@@ -84,11 +92,18 @@
     if (stateIndex === 0) {
       frame.source.clearObservations();
       frame.mean.clearObservations();
+      frame.mean.clearNormalDistribution();
       this.sample();
     } else if (stateIndex === 1) {
       this.animatorTimer = setInterval(this.animator.bind(this), 80);
+      frame.mean.clearNormalDistribution();
     } else if (stateIndex === 2) {
       this.animatorTimer = setInterval(this.animator.bind(this), 5);
+      frame.mean.clearNormalDistribution();
+    } else if (stateIndex === 3) {
+      this.animatorTimer = setInterval(this.animator.bind(this), 5);
+      frame.mean.clearNormalDistribution();
+      frame.mean.drawNormalDistribution(gamma.mean(), gamma.variance() / 100);
     }
   };
 
@@ -105,6 +120,7 @@
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")"),
       gamma.domain(),
+      "iterations",
       height / 2
     );
 
@@ -113,11 +129,12 @@
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + (2 * margin.top + margin.bottom + height / 2) + ")"),
       gamma.domain(),
+      "observations",
       height / 2
     );
   }
 
-  function Plot(container, domain, height) {
+  function Plot(container, domain, label, height) {
     this.container = container;
     this.height = height;
 
@@ -126,17 +143,28 @@
       .domain(domain);
 
     this.y = d3.scaleLinear()
-      .range([0, height])
+      .range([height, 0])
       .domain([0, 1]);
 
     this.container.append("g")
-        .attr("class", "axis")
-        .attr("transform", "translate(0," + height + ")")
-        .call(d3.axisBottom(this.x));
+      .attr("class", "axis")
+      .attr("transform", "translate(0," + height + ")")
+      .call(d3.axisBottom(this.x));
 
     this.container.append("g")
-        .attr("class", "axis")
-        .call(d3.axisLeft(this.y).tickValues([]));
+      .attr("class", "axis")
+      .call(d3.axisLeft(this.y).tickValues([]));
+
+    this.container.append("text")
+      .attr("class", "label")
+      .attr("text-anchor", "end")
+      .attr("y", 6)
+      .attr("dy", ".75em")
+      .attr("transform", "rotate(-90)")
+      .text(label);
+
+    this.obs = this.container.append("g")
+      .attr("class", "observations");
 
     this.bins = [];
     for (var i = 0; i <= bins; i++) {
@@ -153,7 +181,7 @@
   };
 
   Plot.prototype.clearObservations = function () {
-    this.container.selectAll('rect')
+    this.obs.selectAll('rect')
       .remove();
   };
 
@@ -161,11 +189,36 @@
     const index = this.binIndex(obs);
     if (index === null) return; // out of axis domain
 
-    this.container.append('rect')
+    this.obs.append('rect')
       .attr("class", "bin")
       .attr("x", this.binIndex(obs) * width / bins)
       .attr("width", width / bins)
       .attr("height", this.height);
+  };
+
+  Plot.prototype.clearNormalDistribution = function () {
+    this.container.selectAll('path.distribution')
+      .remove();
+  };
+
+  Plot.prototype.drawNormalDistribution = function (mean, variance) {
+    const self = this;
+    const drawer = d3.line()
+      .x(function(d) { return self.x(d.x); })
+      .y(function(d) { return self.y(d.y); });
+
+    const normalCurve = [];
+    for (var xpx = 0; xpx <= width; xpx++) {
+      var x = this.x.invert(xpx);
+      normalCurve.push({
+        'x': x,
+        'y': Math.exp(- (x - mean) * (x - mean) / (2 * variance))
+      });
+    }
+
+    this.container.append("path")
+      .attr("class", "distribution")
+      .attr("d", drawer(normalCurve));
   };
 
   function GammaSampler(shape, scale) {
@@ -174,9 +227,11 @@
     this.shape = shape;
     this.scale = scale;
   }
+
   GammaSampler.prototype.exponential = function () {
     return -this.scale * Math.log(Math.random());
   };
+
   GammaSampler.prototype.sample = function () {
     var sum = 0;
     for (var i = 0; i < this.shape; i++) {
@@ -184,12 +239,15 @@
     }
     return sum;
   };
+
   GammaSampler.prototype.variance = function () {
     return this.shape * this.scale * this.scale;
   };
+
   GammaSampler.prototype.mean = function () {
     return this.shape * this.scale;
   };
+
   GammaSampler.prototype.domain = function () {
     const mean = this.mean();
     const sd = Math.sqrt(this.variance());

@@ -1,6 +1,10 @@
 <style scoped>
-:scope svg .axis .domain, :scope svg .axis .tick, :scope svg .axis .tick line {
+:scope svg .axis .domain, :scope svg .axis .tick line {
   stroke: #839496;
+}
+
+:scope svg .axis .tick text {
+  fill: #839496;
 }
 
 :scope svg rect.bin {
@@ -9,11 +13,23 @@
   opacity: 0.3;
 }
 
+:scope svg text.label {
+  font-size: 10pt;
+  font-family: sans-serif;
+  fill: #839496;
+}
+
+:scope svg path.distribution {
+  fill: none;
+  stroke: #cb4b16;
+  stroke-width: 2px;
+}
 </style>
 
 <article id="clt-visualization-logic">
   <div hidden class="fragment current-visible" data-fragment-index="0"></div>
   <div hidden class="fragment current-visible" data-fragment-index="1"></div>
+  <div hidden class="fragment current-visible" data-fragment-index="2"></div>
 </article>
 
 <article id="clt-d3-visualization"></article>

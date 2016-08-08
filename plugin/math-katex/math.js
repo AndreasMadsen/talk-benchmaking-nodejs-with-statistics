@@ -17,7 +17,7 @@ var RevealMath = window.RevealMath || (function(){
 
 	function maybeLoaded() {
 		loads += 1;
-		loaded();
+		if (loads == 2) loaded();
 	}
 
 	function loaded() {
@@ -54,11 +54,8 @@ var RevealMath = window.RevealMath || (function(){
 		var head = document.querySelector( 'head' );
 		var stylesheet = document.createElement( 'style' );
 		stylesheet.innerHTML = [
-			'.reveal math-latex.display { display: block }',
-
-			'.reveal math-latex.inline:not(first) {',
-			'    margin-left: 0.35em;',
-			'}'
+			'.reveal math-latex, .reveal math-latex .katex { font: normal 100% KaTeX_Main; line-height: 1.2; }',
+			'.reveal math-latex[display-mode] { display: block }',
 		]
 		.join( '\n' );
 		head.appendChild(stylesheet);
