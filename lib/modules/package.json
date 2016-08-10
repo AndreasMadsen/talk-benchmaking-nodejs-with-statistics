@@ -1,0 +1,11 @@
+{
+  "name": "modules",
+  "version": "1.0.0",
+  "description": "Browserify bundle",
+  "main": "index.js",
+  "dependencies": {
+    "distributions": "^1.0.0",
+    "mathfn": "^1.0.0",
+    "summary": "^0.3.2"
+  }
+}

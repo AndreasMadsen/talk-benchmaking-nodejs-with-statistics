@@ -16,3 +16,17 @@ box-shadow: none;
 border: 1px solid #073642;
 border-left: 5px solid #073642;
 }
+
+.reveal svg.d3 .axis .domain, :scope svg .axis .tick line {
+  stroke: #839496;
+}
+
+.reveal svg.d3 .axis .tick text {
+  fill: #839496;
+}
+
+.reveal svg.d3 text.label {
+  font-size: 10pt;
+  font-family: sans-serif;
+  fill: #839496;
+}

@@ -1,15 +1,18 @@
 (function () {
-  var currentIndex = 0;
-
-  const activeFragments = document.currentScript.parentNode
-    .querySelectorAll('.fragment.current-visible.visible');
-  if (activeFragments.length > 0) {
-    currentIndex = +activeFragments[activeFragments.length - 1].dataset.fragmentIndex;
-    currentIndex += 1;
-  }
+  const section = document.currentScript.parentNode;
 
   var frame = null;
   var state = null;
+
+  function getFragmentIndex() {
+    const activeFragments = section
+      .querySelectorAll('.fragment.current-visible.visible');
+    if (activeFragments.length > 0) {
+      const latest = activeFragments[activeFragments.length - 1];
+      return (+latest.dataset.fragmentIndex) + 1;
+    }
+    return 0;
+  }
 
   const thisSlide = document.currentScript.parentNode;
   const margin = {top: 10, right: 30, bottom: 30, left: 30};
@@ -20,16 +23,12 @@
 
   Reveal.addEventListener('fragmentshown', function(event) {
     if (event.fragment.parentNode.id !== 'clt-visualization-logic') return;
-    const index = +event.fragment.dataset.fragmentIndex;
-    currentIndex = index + 1;
-    if (state) state.set(currentIndex);
+    if (state) state.set(getFragmentIndex());
   });
 
   Reveal.addEventListener('fragmenthidden', function(event) {
     if (event.fragment.parentNode.id !== 'clt-visualization-logic') return;
-    const index = +event.fragment.dataset.fragmentIndex;
-    currentIndex = index;
-    if (state) state.set(currentIndex);
+    if (state) state.set(getFragmentIndex());
   });
 
   Reveal.addEventListener('slidechanged', function(event) {
@@ -43,7 +42,7 @@
   head.ready("d3.min.js", function() {
     frame = new Frame(d3.select("#clt-d3-visualization"));
     state = new State(frame);
-    state.set(currentIndex);
+    state.set(getFragmentIndex());
   });
 
   function State() {
@@ -112,6 +111,7 @@
     frameBuild = true;
 
     this.svg = d3.select("#clt-d3-visualization").append("svg")
+      .attr("class", "d3")
       .attr("width", width + margin.left + margin.right)
       .attr("height", height + 2 * margin.top + 2 * margin.bottom);
 

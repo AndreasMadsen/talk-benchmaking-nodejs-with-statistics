@@ -7,12 +7,26 @@
   margin-top: 30px;
 }
 
+:scope .sidenote {
+  text-align: right;
+  margin-top: 20px;
+  padding-right: 20px;
+  box-sizing: border-box;
+}
+
+:scope .sidenote small {
+  font-size: 50%;
+}
 </style>
 
-<q>If the source has mean <math-latex latex="\mu"></math-latex> and
+<span><q>If the source has mean <math-latex latex="\mu"></math-latex> and
   standard deviation <math-latex latex="\sigma"></math-latex>, then
   the mean over <math-latex latex="n"></math-latex> observations will
-  be normally distributed with mean <math-latex latex="\mu"></math-latex> and
-  standard deviation <math-latex latex="\frac{\sigma}{\sqrt{n}}"></math-latex></q>
+  approximate a normally distributed with mean <math-latex latex="\mu"></math-latex> and
+  standard deviation <math-latex latex="\frac{\sigma}{\sqrt{n}}"></math-latex></q> *</span>
 
 <math-latex display-mode latex="\mathcal{N}\left(\mu, \frac{\sigma}{\sqrt{n}}\right)"></math-latex>
+
+<div class="sidenote">
+<small>* not completely mathematical accurate</small>
+</div>
