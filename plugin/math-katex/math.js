@@ -54,7 +54,7 @@ var RevealMath = window.RevealMath || (function(){
 		var head = document.querySelector( 'head' );
 		var stylesheet = document.createElement( 'style' );
 		stylesheet.innerHTML = [
-			'.reveal math-latex, .reveal math-latex .katex { font: normal 100% KaTeX_Main; line-height: 1.2; }',
+			'.reveal math-latex, .reveal math-latex .katex { font: normal 100% KaTeX_Main; line-height: 1.2; text-rendering: geometricPrecision; }',
 			'.reveal math-latex[display-mode] { display: block }',
 		]
 		.join( '\n' );

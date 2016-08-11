@@ -1,7 +1,6 @@
 (function () {
   const mean = 0.02;
   const sd = Math.sqrt(0.000002);
-  const article = document.getElementById('d3-density');
 
   const margin = {top: 10, right: 30, bottom: 30, left: 30};
   const width = 700 - margin.left - margin.right;
@@ -96,7 +95,7 @@
       .attr("class", "text")
       .attr("x", xmid)
       .attr("y", this.y(50))
-      .text((end - start).toFixed(2) + ' %');
+      .text(((end - start) * 100).toFixed(0) + ' %');
   };
 
   Plot.prototype.line = function (start, end) {

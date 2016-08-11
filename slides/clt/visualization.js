@@ -14,7 +14,6 @@
     return 0;
   }
 
-  const thisSlide = document.currentScript.parentNode;
   const margin = {top: 10, right: 30, bottom: 30, left: 30};
   const width = 700 - margin.left - margin.right;
   const height = 440 - 2 * margin.top - 2 * margin.bottom;
@@ -32,9 +31,9 @@
   });
 
   Reveal.addEventListener('slidechanged', function(event) {
-    if (event.previousSlide === thisSlide) {
+    if (event.previousSlide === section) {
       if (state) state.pause();
-    } else if (event.currentSlide === thisSlide) {
+    } else if (event.currentSlide === section) {
       if (state) state.resume();
     }
   });
@@ -43,13 +42,13 @@
     frame = new Frame(d3.select("#clt-d3-visualization"));
     state = new State(frame);
     state.set(getFragmentIndex());
+    if (Reveal.getCurrentSlide() !== section) state.pause();
   });
 
   function State() {
     this.nextSamples = [];
     this.nextMean = null;
 
-    this.stateIndex = 0;
     this.animatorTimer = null;
 
     this.sample();
@@ -81,11 +80,10 @@
   };
 
   State.prototype.resume = function () {
-    this.set(this.stateIndex);
+    this.set(getFragmentIndex());
   };
 
   State.prototype.set = function (stateIndex) {
-    this.stateIndex = stateIndex;
     clearInterval(this.animatorTimer);
 
     if (stateIndex === 0) {

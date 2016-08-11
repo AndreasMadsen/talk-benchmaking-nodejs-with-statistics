@@ -1,0 +1,88 @@
+<style scoped>
+:scope .graph {
+  float: left;
+  width: 470px;
+  height: 436px;
+}
+
+:scope .side {
+  float: right;
+  width: 470px;
+  height: 408px;
+}
+
+:scope pre {
+  display: block;
+  width: 100%;
+  margin: 0;
+}
+
+:scope svg path.line {
+  fill: none;
+  stroke: #cb4b16;
+  stroke-width: 2px;
+}
+
+:scope svg path.area {
+  fill: #839496;
+  opacity: 0.4;
+}
+
+:scope svg text.area {
+  text-anchor: middle;
+  font-size: 60%;
+  font-family: sans-serif;
+  fill: #839496;
+}
+
+:scope svg text.description {
+  text-anchor: middle;
+  font-size: 12pt;
+  font-family: sans-serif;
+  fill: #839496;
+}
+
+:scope svg rect.bar {
+  fill: #839496;
+}
+
+:scope .fragment.display {
+  display: none;
+}
+:scope .fragment.display.current-visible.visible.current-fragment {
+  display: block;
+}
+</style>
+
+<article class="graph" id="ci-d3-calculation"></article>
+<article class="side">
+<pre class="fragment current-visible display" data-fragment-index="0"><code data-trim class="javascript">
+const dist = require('distributions');
+
+function interval(arr) {
+  const n = arr.length;
+  const μ = sum(arr) / n;
+  const σ = Math.sqrt(sum(
+    arr.map(x => Math.pow(x - μ, 2))
+  ) / (n - 1));
+
+  const se = σ / Math.sqrt(n);
+  const t = dist.Studentt(n - 1);
+
+  return [
+    μ + t.inv(0.025) * se,
+    μ + t.inv(0.975) * se
+  ];
+}
+</code></pre>
+<dl class="fragment current-visible display" data-fragment-index="1">
+<dt>Inside Interval</dt><dd>It <u>can't be rejected</u> that the true performance and the goal are <u>equal</u>.</dd>
+<dt>Outside Interval</dt><dd>The true performance and the goal are <u>not equal</u>.</dd>
+</dl>
+<div class="fragment current-visible display" data-fragment-index="2">
+  <math-latex display-mode latex="H_0: \mu = \text{goal}"></math-latex>
+  <p>
+  The null hypothesis (<math-latex latex="H_0"></math-latex>) can only be rejected, never accepted.
+  </p>
+</div>
+</article>
