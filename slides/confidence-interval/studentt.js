@@ -115,8 +115,6 @@
     const stat = this.drawObservations(this.observationsDrawn + 1);
     const se = stat.sd() / Math.sqrt(stat.size());
 
-    console.log(stat.size());
-
     this.studentt.clearDistributions();
     this.studentt.clearObservations();
     this.studentt.drawObservation(stat.mean());

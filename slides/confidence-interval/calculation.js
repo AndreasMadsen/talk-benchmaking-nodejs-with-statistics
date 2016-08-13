@@ -3,9 +3,10 @@
   const sd = Math.sqrt(0.000002);
 
   const margin = {top: 20, right: 30, bottom: 30, left: 30};
-  const width = 470 - margin.left - margin.right;
+  const width = 480 - margin.left - margin.right;
   const height = 436 - margin.top - margin.bottom;
 
+  // Sampled from `rgamma(100, 100, 1/(0.1/100))`
   const observations = [
     0.099,0.0911,0.1077,0.1155,0.101,0.1062,0.1142,0.1083,0.1096,0.1006,
     0.0944,0.1016,0.1095,0.1096,0.0999,0.0992,0.0896,0.0978,0.0877,0.1039,
@@ -39,7 +40,7 @@
     plot.area(0.025, 0.975);
     plot.line(0, 1);
     plot.bar(0.1, 'goal', 1);
-    plot.bar(stat.mean(), 'estimate');
+    plot.bar(stat.mean(), 'estimated');
   });
 
   function Plot(container, normal) {
