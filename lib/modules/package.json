@@ -6,6 +6,7 @@
   "dependencies": {
     "distributions": "^1.0.0",
     "mathfn": "^1.0.0",
+    "ttest": "^1.0.0",
     "summary": "^0.3.2"
   }
 }
