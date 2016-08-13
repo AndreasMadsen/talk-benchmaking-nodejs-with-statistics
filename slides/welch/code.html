@@ -1,0 +1,88 @@
+<style scoped>
+:scope .graph {
+  float: left;
+  width: 480px;
+  height: 476px;
+}
+
+:scope .side {
+  float: right;
+  width: 480px;
+}
+
+:scope pre {
+  display: block;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+:scope pre code {
+  max-height: none;
+}
+
+:scope pre code .hljs-number {
+  color: inherit;
+}
+
+:scope svg path.line {
+  fill: none;
+  stroke: #cb4b16;
+  stroke-width: 2px;
+}
+
+:scope svg path.area {
+  fill: #839496;
+  opacity: 0.4;
+}
+
+:scope svg text.area {
+  text-anchor: middle;
+  font-size: 60%;
+  font-family: sans-serif;
+  fill: #839496;
+}
+
+:scope svg text.description {
+  text-anchor: middle;
+  font-size: 12pt;
+  font-family: sans-serif;
+  fill: #839496;
+}
+
+:scope svg rect.bar {
+  fill: #839496;
+}
+
+:scope .fragment.display {
+  display: none;
+}
+:scope .fragment.display.current-visible.visible.current-fragment {
+  display: block;
+}
+</style>
+
+<article class="graph" id="welch-d3-code"></article>
+<article class="side">
+<pre><code data-trim class="javascript">
+const dist = require('distributions');
+function interval(arr1, arr2) {
+  // calculate n1, n2, μ1, μ2, σ1, σ2
+
+  const diff = μ1 - μ2;
+  const se1 = Math.pow(σ1, 2) / n1;
+  const se2 = Math.pow(σ2, 2) / n2;
+  const se = Math.sqrt(se1 + se2);
+
+  const df = Math.pow(se1 + se2, 2) / (
+    Math.pow(se1, 2) / (n1 - 1) +
+    Math.pow(se2, 2) / (n2 - 1));
+
+  const t = dist.Studentt(df);
+  return [
+    diff + t.inv(0.025) * se,
+    diff + t.inv(0.975) * se
+  ];
+}
+</code></pre>
+</article>
