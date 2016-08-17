@@ -1,5 +1,5 @@
 
-all:
+all: poster webm
 
 poster: pigeon-clock-input.jpg pigeon-turn-peck.jpg
 webm: pigeon-clock-input.webm pigeon-turn-peck.webm
