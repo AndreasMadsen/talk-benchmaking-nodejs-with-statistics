@@ -19,8 +19,8 @@
   font-style: italic;
   font-weight: 400;
   src: local('Lato Italic'), local('Lato-Italic'),
-       url('LatoLatin-BoldItalic.woff2') format('woff2'),
-       url('LatoLatin-BoldItalic.woff') format('woff');
+       url('LatoLatin-Italic.woff2') format('woff2'),
+       url('LatoLatin-Italic.woff') format('woff');
 }
 @font-face {
   font-family: 'Lato';
