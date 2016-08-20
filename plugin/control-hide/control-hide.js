@@ -1,8 +1,18 @@
 (function () {
+
+
   Reveal.configure({
     keyboard: {
       67: function () {
-        Reveal.configure({ controls: !Reveal.getConfig().controls });
+        const controls = Reveal.getConfig().controls;
+
+        Reveal.configure({ controls: !controls });
+
+        const videos = document.getElementsByTagName('video');
+        for (var i = 0; i < videos.length; i++) {
+          videos[i].controls = !controls;
+        }
+
       }
     }
   })
