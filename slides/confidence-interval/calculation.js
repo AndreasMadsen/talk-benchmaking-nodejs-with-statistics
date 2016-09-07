@@ -39,8 +39,8 @@
 
     plot.area(0.025, 0.975);
     plot.line(0, 1);
-    plot.bar(0.1, 'goal', 1);
-    plot.bar(stat.mean(), 'estimated');
+    plot.bar(0.1, 'Goal', 1);
+    plot.bar(stat.mean(), 'Estimated');
   });
 
   function Plot(container, normal) {

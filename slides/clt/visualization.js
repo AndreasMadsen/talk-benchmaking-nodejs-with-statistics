@@ -118,7 +118,7 @@
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")"),
       gamma.domain(),
-      "iterations",
+      "Iterations",
       height / 2
     );
 
@@ -127,7 +127,7 @@
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + (2 * margin.top + margin.bottom + height / 2) + ")"),
       gamma.domain(),
-      "observations",
+      "Observations",
       height / 2
     );
   }

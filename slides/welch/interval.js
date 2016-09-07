@@ -136,9 +136,9 @@
 
     const t = ttest(statA, statB);
     if (t.valid()) {
-      document.getElementById('welch-significant-status').innerHTML = 'not signficant';
+      document.getElementById('welch-significant-status').innerHTML = 'Not signficant';
     } else {
-      document.getElementById('welch-significant-status').innerHTML = 'signficant';
+      document.getElementById('welch-significant-status').innerHTML = 'Signficant';
     }
 
   };
