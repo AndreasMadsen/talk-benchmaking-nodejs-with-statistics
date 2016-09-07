@@ -56,8 +56,8 @@
 
     plot.area(0.025, 0.975);
     plot.line(0, 1);
-    plot.bar(0, 'no diffrence');
-    plot.bar(t._mean, 'estimated diffrence');
+    plot.bar(0, 'no difference');
+    plot.bar(t._mean, 'estimated difference');
   });
 
   function Plot(container, normal) {
