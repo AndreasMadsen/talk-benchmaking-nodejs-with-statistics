@@ -1,0 +1,54 @@
+<style scoped>
+:scope pre.output {
+  height: 300px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+html:not(.controls) :scope pre.output {
+  overflow-y: hidden;
+}
+
+:scope pre.output code {
+  overflow-x: hidden;
+  max-height: none;
+}
+</style>
+
+<pre class="command"><code data-trim class="nohighlight">
+cat results.csv | Rscript ./benchmark/compare.R
+</code></pre>
+
+<pre class="output"><code class="nohighlight">                                 improvement significant      p.value
+len=1024 type="buffer()"             47.11 %         *** 5.202555e-12
+len=1024 type="fast-alloc"           -3.41 %             3.823226e-01
+len=1024 type="fast-alloc-fill"       1.11 %             7.985624e-01
+len=1024 type="fast-allocUnsafe"     24.37 %         *** 4.264084e-05
+len=1024 type="slow"                  4.81 %             2.634609e-01
+len=1024 type="slow-allocUnsafe"      1.28 %             7.864850e-01
+len=10 type="buffer()"               59.42 %         *** 9.953552e-13
+len=10 type="fast-alloc"             -6.43 %             1.450524e-01
+len=10 type="fast-alloc-fill"        -2.96 %             4.873766e-01
+len=10 type="fast-allocUnsafe"       33.89 %         *** 6.517268e-07
+len=10 type="slow"                   -1.48 %             7.357711e-01
+len=10 type="slow-allocUnsafe"        0.04 %             9.939576e-01
+len=2048 type="buffer()"             36.34 %         *** 3.201045e-10
+len=2048 type="fast-alloc"           -4.67 %             2.172900e-01
+len=2048 type="fast-alloc-fill"      -0.15 %             9.732945e-01
+len=2048 type="fast-allocUnsafe"     20.13 %         *** 2.372115e-04
+len=2048 type="slow"                  4.35 %             2.831340e-01
+len=2048 type="slow-allocUnsafe"      1.13 %             8.055388e-01
+len=4096 type="buffer()"              4.90 %             2.495340e-01
+len=4096 type="fast-alloc"           -2.11 %             5.417520e-01
+len=4096 type="fast-alloc-fill"      -0.29 %             9.460378e-01
+len=4096 type="fast-allocUnsafe"      3.11 %             5.001959e-01
+len=4096 type="slow"                  0.95 %             8.145888e-01
+len=4096 type="slow-allocUnsafe"      3.74 %             4.227627e-01
+len=8192 type="buffer()"              5.08 %             2.263029e-01
+len=8192 type="fast-alloc"           -1.16 %             7.300235e-01
+len=8192 type="fast-alloc-fill"       0.40 %             9.179919e-01
+len=8192 type="fast-allocUnsafe"      5.16 %             2.591544e-01
+len=8192 type="slow"                  2.57 %             5.212449e-01
+len=8192 type="slow-allocUnsafe"     -3.19 %             4.699138e-01
+
+</code></pre>
