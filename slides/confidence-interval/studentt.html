@@ -37,12 +37,16 @@
   opacity: 0.3;
 }
 
-:scope .fragment.opacity {
+:scope .fragment.opacity-parent .fragment.opacity {
   visibility: visible;
+  opacity: 0;
+}
+
+:scope .fragment.opacity-parent.visible .fragment.opacity {
   opacity: 1;
 }
-:scope .fragment.opacity.visible {
-  visibility: visible;
+
+:scope .fragment.opacity-parent.visible .fragment.opacity.visible {
   opacity: 0.3;
 }
 </style>
@@ -50,15 +54,18 @@
 <article id="ci-studentt-logic">
   <div hidden class="fragment current-visible" data-fragment-index="0"></div>
   <div hidden class="fragment current-visible" data-fragment-index="1"></div>
+  <div hidden class="fragment current-visible" data-fragment-index="2"></div>
 </article>
 
 <div class="content">
   <article id="ci-d3-studentt"></article>
   <article class="equations">
-    <math-latex latex="\hat{\mu} = \frac{1}{N} \sum_{i=1}^N x_i"></math-latex>
-    <math-latex class="fragment" data-fragment-index="0" latex=" \hat{\sigma} = \sqrt{\frac{1}{N - 1} \sum_{i=1}^N \left(x_i - \hat{\mu}\right)^2}"></math-latex>
+    <math-latex class="fragment" data-fragment-index="0" latex="\hat{\mu} = \frac{1}{N} \sum_{i=1}^N x_i"></math-latex>
+    <math-latex class="fragment" data-fragment-index="1" latex=" \hat{\sigma} = \sqrt{\frac{1}{N - 1} \sum_{i=1}^N \left(x_i - \hat{\mu}\right)^2}"></math-latex>
     <div class="seperator"></div>
-    <math-latex class="fragment opacity" data-fragment-index="0" latex="\hat{\mu} \sim \mathcal{N}\left(\mu, \frac{\sigma}{\sqrt{N}}\right)"></math-latex>
-    <math-latex class="fragment" data-fragment-index="0" latex="\hat{\mu} \sim \mathcal{t}\left(N - 1, \mu, \frac{\hat{\sigma}}{\sqrt{N}}\right)"></math-latex>
+    <span class="fragment opacity-parent" data-fragment-index="0">
+      <math-latex class="fragment opacity" data-fragment-index="1" latex="\hat{\mu} \sim \mathcal{N}\left(\mu, \frac{\sigma}{\sqrt{N}}\right)"></math-latex>
+    </span>
+    <math-latex class="fragment" data-fragment-index="1" latex="\hat{\mu} \sim \mathcal{t}\left(N - 1, \mu, \frac{\hat{\sigma}}{\sqrt{N}}\right)"></math-latex>
   </article>
 </div>

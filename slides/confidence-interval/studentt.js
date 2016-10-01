@@ -56,7 +56,6 @@
     const distributions = window.require('distributions');
 
     state = new State();
-    state.normal.drawDistribution(distributions.Normal(mean, sd));
     state.set(getFragmentIndex());
     if (Reveal.getCurrentSlide() !== section) state.pause();
   });
@@ -130,19 +129,28 @@
     if (stateIndex === 0) {
       const stat = this.drawObservations(5);
       const se = stat.sd() / Math.sqrt(stat.size());
+      this.normal.clearDistributions();
+      this.studentt.clearDistributions();
+      this.studentt.clearObservations();
+    } else if (stateIndex === 1) {
+      const stat = this.drawObservations(5);
+      const se = stat.sd() / Math.sqrt(stat.size());
+      this.normal.clearDistributions();
       this.studentt.clearDistributions();
       this.studentt.clearObservations();
       this.studentt.drawObservation(stat.mean());
       this.studentt.drawDistribution(distributions.Normal(stat.mean(), se));
-    } else if (stateIndex === 1) {
+    } else if (stateIndex === 2) {
       const stat = this.drawObservations(5);
       const se = stat.sd() / Math.sqrt(stat.size());
+      this.normal.clearDistributions();
+      this.normal.drawDistribution(distributions.Normal(mean, sd));
       this.studentt.clearDistributions();
       this.studentt.clearObservations();
       this.studentt.drawObservation(stat.mean());
       this.studentt.drawDistribution(distributions.Normal(stat.mean(), se), true);
       this.studentt.drawDistribution(StudenttCustom(stat.size() - 1, stat.mean(), se));
-    } else if (stateIndex === 2) {
+    } else if (stateIndex === 3) {
       this.animatorTimer = setInterval(this.animator.bind(this), 50);
     }
   };
